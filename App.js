@@ -1,0 +1,116 @@
+import "react-native-gesture-handler";
+
+import * as React from "react";
+
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import Discover from "./pages/Discover";
+import Pet from "./pages/Pet";
+import Playground from "./pages/Playground";
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function DiscoverStack() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Discover"
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen
+        name="Discover"
+        component={Discover}
+        options={{ title: "Discover" }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function PetStack() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Pet"
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen name="Pet" component={Pet} options={{ title: "Pet" }} />
+    </Stack.Navigator>
+  );
+}
+
+function PlaygroundStack() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Playground"
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen
+        name="Playground"
+        component={Playground}
+        options={{ title: "Playground" }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        initialRouteName="Feed"
+        tabBarOptions={{
+          activeTintColor: "#42f44b",
+          inactiveTintColor: "#000000",
+          style: {
+            backgroundColor: "#F4F08D"
+          }
+        }}
+      >
+        <Tab.Screen
+          name="DiscoverStack"
+          component={DiscoverStack}
+          options={{
+            tabBarLabel: "Discover",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="lighthouse-on"
+                color={color}
+                size={size}
+              />
+            )
+          }}
+        />
+        <Tab.Screen
+          name="PetStack"
+          component={PetStack}
+          options={{
+            tabBarLabel: "Pet",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="paw" color={color} size={size} />
+            )
+          }}
+        />
+        <Tab.Screen
+          name="PlaygroundStack"
+          component={PlaygroundStack}
+          options={{
+            tabBarLabel: "Playground",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="owl" color={color} size={size} />
+            )
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
+export default App;
