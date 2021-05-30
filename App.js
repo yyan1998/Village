@@ -12,6 +12,10 @@ import Discover from "./pages/Discover";
 import Pet from "./pages/Pet";
 import Playground from "./pages/Playground";
 import Item1 from "./pages/Item1";
+import Item2 from "./pages/Item2";
+import Item3 from "./pages/Item3";
+import Item4 from "./pages/Item4";
+import Item5 from "./pages/Item5";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -63,6 +67,26 @@ function PlaygroundStack() {
         name="Item1"
         component={Item1}
         options={{ title: "Item1" }}
+      />
+      <Stack.Screen
+        name="Item2"
+        component={Item2}
+        options={{ title: "Item2" }}
+      />
+      <Stack.Screen
+        name="Item3"
+        component={Item3}
+        options={{ title: "Item3" }}
+      />
+      <Stack.Screen
+        name="Item4"
+        component={Item4}
+        options={{ title: "Item4" }}
+      />
+      <Stack.Screen
+        name="Item5"
+        component={Item5}
+        options={{ title: "Item5" }}
       />
     </Stack.Navigator>
   );

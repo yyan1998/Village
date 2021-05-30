@@ -1,16 +1,37 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { Component } from "react";
+import { StyleSheet, Text, View, SafeAreaView, Button } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Item3</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class Item3 extends React.Component {
+  static navigationOptions = {
+    title: "Item3"
+  };
+  constructor(props) {
+    super(props);
+    this.onPress = this.onPress.bind(this);
+  }
+
+  onPress = () => {
+    console.log("here");
+    this.props.navigation.navigate("PlaygroundStack", { screen: "Playground" });
+  };
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Button title="Back" onPress={this.onPress} />
+        <TouchableOpacity onPress={this.onPress}>
+          <Text>Item3</Text>
+        </TouchableOpacity>
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    );
+  }
 }
-
+Item3.navigationOptions = {
+  header: null,
+  tabBarVisible: false
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,

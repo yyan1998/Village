@@ -10,7 +10,7 @@ import {
 import Carousel from "react-native-snap-carousel"; // Version can be specified in package.json
 
 import { scrollInterpolator, animatedStyles } from "../utils/animations";
-import Playground from "../pages/Playground";
+
 
 const SLIDER_WIDTH = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
@@ -30,16 +30,16 @@ export default class Slider extends React.Component {
     this.onPress = this.onPress.bind(this);
   }
 
-  onPress = () => {
-    console.log("here");
-    this.props.navigation.navigate("PlaygroundStack", { screen: "Item1" });
+  onPress = (item) => {
+    // console.log(`Item${item}`);
+    this.props.navigation.navigate("PlaygroundStack", { screen: `Item${item}` });
   };
 
   _renderItem({ item }) {
     return (
       <TouchableOpacity
         style={styles.itemContainer}
-        onPress={this.onPress}
+        onPress={() => this.onPress(item)}
         // navigation={this.props.navigation}
       >
         <Text style={styles.itemLabel}>{`Item ${item}`}</Text>
