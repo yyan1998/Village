@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, Button } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default class Item1 extends React.Component {
@@ -18,12 +18,13 @@ export default class Item1 extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <Button title="Back" onPress={this.onPress} />
         <TouchableOpacity onPress={this.onPress}>
           <Text>Item1</Text>
         </TouchableOpacity>
         <StatusBar style="auto" />
-      </View>
+      </SafeAreaView>
     );
   }
 }
