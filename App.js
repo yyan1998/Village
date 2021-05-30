@@ -11,6 +11,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Discover from "./pages/Discover";
 import Pet from "./pages/Pet";
 import Playground from "./pages/Playground";
+import Item1 from "./pages/Item1";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -58,15 +59,31 @@ function PlaygroundStack() {
         component={Playground}
         options={{ title: "Playground" }}
       />
+      <Stack.Screen
+        name="Item1"
+        component={Item1}
+        options={{ title: "Item1" }}
+      />
     </Stack.Navigator>
   );
 }
-
+PlaygroundStack.navigationOptions = ({ navigation }) => {
+  return {
+    // tabBarVisible: navigation.state.index === 0,
+    // tabBarLabel: "Home",
+    // tabBarIcon: ({ focused }) => (
+    //   <TabBarIcon
+    //     focused={focused}
+    //     name={Platform.OS === "ios" ? "ios-home" : "md-home"}
+    //   />
+    // )
+  };
+};
 function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Feed"
+        initialRouteName="PetStack"
         tabBarOptions={{
           activeTintColor: "#42f44b",
           inactiveTintColor: "#000000",
