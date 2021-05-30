@@ -13,7 +13,6 @@ export default class Item2 extends React.Component {
   }
 
   onPress = () => {
-    console.log("here");
     this.props.navigation.navigate("PlaygroundStack", { screen: "Playground" });
   };
   render() {

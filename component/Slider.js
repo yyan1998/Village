@@ -31,7 +31,6 @@ export default class Slider extends React.Component {
   }
 
   onPress = (item) => {
-    // console.log(`Item${item}`);
     this.props.navigation.navigate("PlaygroundStack", { screen: `Item${item}` });
   };
 
