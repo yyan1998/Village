@@ -18,10 +18,9 @@ export default class Item3 extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Button title="Back" onPress={this.onPress} />
-        <TouchableOpacity onPress={this.onPress}>
-          <Text>Item3</Text>
-        </TouchableOpacity>
+        <View style={styles.back}>
+          <Button title="Back" onPress={this.onPress} />
+        </View>
         <StatusBar style="auto" />
       </SafeAreaView>
     );
@@ -33,9 +32,11 @@ Item3.navigationOptions = {
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    flex: 1
+  },
+  back: {
+    fontSize: 24,
+    textAlign: "left",
+    width: 80
   }
 });
