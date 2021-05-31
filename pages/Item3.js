@@ -21,6 +21,9 @@ export default class Item3 extends React.Component {
         <View style={styles.back}>
           <Button title="Back" onPress={this.onPress} />
         </View>
+        <TouchableOpacity style={styles.test}>
+          <Text>Happy</Text>
+        </TouchableOpacity>
         <StatusBar style="auto" />
       </SafeAreaView>
     );
@@ -38,5 +41,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "left",
     width: 80
+  },
+  test: {
+    fontSize: 24,
+    textAlign: "left",
+    backgroundColor: "#000",
+    width: 80,
+    height: 80
   }
 });
