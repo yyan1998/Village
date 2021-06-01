@@ -16,6 +16,7 @@ import Item2 from "./pages/Item2";
 import Item3 from "./pages/Item3";
 import Item4 from "./pages/Item4";
 import Item5 from "./pages/Item5";
+import Wiki1 from "./pages/Wiki1";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -87,6 +88,11 @@ function PlaygroundStack() {
         name="Item5"
         component={Item5}
         options={{ title: "Item5" }}
+      />
+      <Stack.Screen
+        name="Wiki1"
+        component={Wiki1}
+        options={{ title: "Wiki1" }}
       />
     </Stack.Navigator>
   );
