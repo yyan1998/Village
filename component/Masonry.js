@@ -6,9 +6,8 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  Image,
-  Text,
   Dimensions,
+  TouchableWithoutFeedback
 } from "react-native";
 import { SafeAreaView } from "react-native";
 
@@ -46,8 +45,8 @@ export default class Masonry extends Component {
     return (
     <SafeAreaView style={styles.layout}>
 
-    <FontAwesome name="search" size={24} color="black"  style={{ position: 'absolute', top: 40, right:10}}/>
-        
+    <FontAwesome name="search" size={24} color="black"  style={{ position: 'absolute', top: 45, right:10}}/>
+    <FontAwesome name="cloud-upload" size={24} color="black" style={{ position: 'absolute', top: 45, left:10}}/>
     <ScrollView
         onScroll={this.handleScroll}
         onContentSizeChange={(width, height) => {
@@ -57,6 +56,7 @@ export default class Masonry extends Component {
       >
         <View style={styles.container}>
           <View>
+            
             {data.length ? 
               data.slice(0, data.length / 2).map((di, i) => {
                 return this.props.renderImageItem(di, i);
@@ -65,7 +65,6 @@ export default class Masonry extends Component {
               <></>
             )}
 
-          
           </View>
           <View>
             {data.length ? 
@@ -90,9 +89,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   layout : {
+    marginBottom: 70
+
   },
   scroll :{
-      top: 60
+      top: 70,
   },
   icon: {
     top : 0
