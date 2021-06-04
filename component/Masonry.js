@@ -60,6 +60,7 @@ export default class Masonry extends Component {
             {data.length ? 
               data.slice(0, data.length / 2).map((di, i) => {
                 return this.props.renderImageItem(di, i);
+
               })
              : (
               <></>
@@ -68,8 +69,8 @@ export default class Masonry extends Component {
           </View>
           <View>
             {data.length ? 
-              data.slice(data.length / 2, data.length).map((di, i) => {
-                return this.props.renderImageItem(di, i);
+              data.slice(data.length / 2, data.length).map((di, i ) => {
+                return this.props.renderImageItem(di, parseInt(i+data.length) );
               })
              : (
               <></>

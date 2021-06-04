@@ -33,11 +33,11 @@ export default class Dis_page1 extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <TouchableWithoutFeedback onPress={this.onPress}>
+        <TouchableOpacity onPress={this.onPress}>
           <View style={styles.back}>
             <Text style ={{fontSize:20, fontWeight:"bold", left:20}}>Back</Text>
           </View>
-        </TouchableWithoutFeedback>
+        </TouchableOpacity>
 
         <Image
           source={require("../assets/image/discovery_1.jpeg")}

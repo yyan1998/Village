@@ -43,6 +43,11 @@ export default class Discovery extends Component {
         title: "Yes. It is Racist to Say Asians are Good at Math. Here is Why.",
       },
       {
+        image_url: require("../assets/image/discovery_6.jpg"),
+        key: 6,
+        title: "Must-Follow K-Pop Artists in 2021",
+      },
+      {
         image_url: require("../assets/image/discovery_4.jpg"),
         key: 3,
         title: "Japan Travel Guide: Architecture Style Explained",
@@ -57,17 +62,22 @@ export default class Discovery extends Component {
   
 
   ImageItem(dataItem, key) {
+    console.log(key)
+    let key_new = (key) + "AA";
+    console.log(key_new)
+
     return (
       <TouchableWithoutFeedback
-       onPress={() => this.onPress(dataItem.key+1)}>
+       onPress={() => this.onPress(dataItem.key+1)}
+       key={key_new}>
         <View
-          key={dataItem.key}
           style={{
             ...styles.card,
           }}
         >
-          <Image style={styles.img} source={dataItem.image_url} />
-          <Text style={styles.text}>{dataItem.title}</Text>
+
+          <Image key={toString(key)+"IM"} style={styles.img} source={dataItem.image_url} />
+          <Text key={toString(key)+"TE"} style={styles.text}>{dataItem.title}</Text>
         </View>
       </TouchableWithoutFeedback>
     );
