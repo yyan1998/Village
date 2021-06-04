@@ -33,14 +33,17 @@ export default class Wiki1 extends React.Component {
           <Button title="Back" onPress={this.onPress} />
         </View>
         <View style={styles.content}>
+          <View style={styles.question_container}>
+            <Text style={styles.question}>
+              Chinese New Year -- Origin and History
+            </Text>
+            <Text style={styles.question2}>Written by Anonymous</Text>
+          </View>
           <View style={styles.img_container}>
             <Image
               style={styles.img}
               source={require("../assets/image/newyear.png")}
             />
-          </View>
-          <View style={styles.question_container}>
-            <Text style={styles.question}>Chinese New Year</Text>
           </View>
           <View style={styles.answer_container}>
             <Text style={styles.answer}>
@@ -48,7 +51,7 @@ export default class Wiki1 extends React.Component {
               All family members get together on New Year's Eve to have a big
               meal. At the same time, everyone celebrates to each other. After
               dinner, we often watch the performances on CCTV-1. At about
-              twelve,children like to go out and watch the fireworks. Some
+              twelve, children like to go out and watch the fireworks. Some
               parents light crakers. On the first early morning of one year,
               many old people get up early and they stick the reversed Fu or
               hang couplets on the front door.Some houses' windows are sticked
@@ -108,32 +111,44 @@ const styles = StyleSheet.create({
   },
   img: {
     resizeMode: "contain",
-    width: "90%",
+    width: "100%",
     height: "100%"
   },
   img_container: {
-    width: 350,
+    width: "100%",
     height: 280,
     alignItems: "center",
-    backgroundColor: "#499fd4",
-    borderRadius: 20,
+    // backgroundColor: "#499fd4",
+    // borderRadius: 20,
     marginVertical: 20
   },
   question: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold"
   },
+  question2: {
+    fontSize: 16,
+    marginTop: 10,
+    alignSelf: "flex-start",
+    justifyContent: "flex-start"
+  },
   question_container: {
-    alignItems: "center",
+    // alignItems: "center",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    width: 380,
+    textAlign: "left",
     marginVertical: 20
-    // backgroundColor: "#499fd4",
+    // backgroundColor: "#499fd4"
   },
   answer: {
     fontSize: 18
   },
   answer_container: {
     alignItems: "center",
-    marginVertical: 20
+    marginVertical: 20,
+    width: 380,
+    textAlign: "justify"
     // backgroundColor: "#499fd4",
   }
 });
