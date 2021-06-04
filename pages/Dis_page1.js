@@ -52,7 +52,6 @@ export default class Dis_page1 extends React.Component {
           thinking of Chinese food, then please continue reading this.
           Unfortunately, you probably would not find such dish in most
           restaurants in China. In this guide, we list top Chinese restaurants
-          in
         </Text >
         <View style={styles.icons}>
         <Feather name="heart" size={40} color="black" style={{marginRight:10}} />

@@ -38,9 +38,9 @@ export default class Discovery extends Component {
         title: "College Experience at USC as an Asian American Student",
       },
       {
-        image_url: require("../assets/image/discovery_3.jpeg"),
-        key: 2,
-        title: "Yes. It is Racist to Say Asians are Good at Math. Here is Why.",
+        image_url: require("../assets/image/discovery_4.jpg"),
+        key: 3,
+        title: "Japan Travel Guide: Architecture Style Explained",
       },
       {
         image_url: require("../assets/image/discovery_6.jpg"),
@@ -48,10 +48,11 @@ export default class Discovery extends Component {
         title: "Must-Follow K-Pop Artists in 2021",
       },
       {
-        image_url: require("../assets/image/discovery_4.jpg"),
-        key: 3,
-        title: "Japan Travel Guide: Architecture Style Explained",
+        image_url: require("../assets/image/discovery_3.jpeg"),
+        key: 2,
+        title: "Yes. It is Racist to Say Asians are Good at Math. Here is Why.",
       },
+     
       {
         image_url: require("../assets/image/discovery_5.jpeg"),
         key: 4,
