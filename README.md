@@ -14,3 +14,10 @@ npm install
 expo start 
 ```
 You can download expo app on your mobile app and scan the QR code to run the app
+
+### contribution
+Hulin Wang
+Yubing Yan
+Damu Gao
+Dehao Tu
+Haoxiang Yang
