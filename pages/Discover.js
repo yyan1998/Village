@@ -1,21 +1,132 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { Component } from "react";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Dimensions,
+  TouchableWithoutFeedback,
+} from "react-native";
+import Masonry from "../component/Masonry.js";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Discover</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class Discovery extends Component {
+  constructor(props) {
+    super(props);
+    this.onPress = this.onPress.bind(this);
+    this.dataItemProvider = this.dataItemProvider.bind(this)
+    this.ImageItem = this.ImageItem.bind(this)
+  }
+
+  onPress = item => {
+    this.props.navigation.navigate("DiscoverStack", {
+      screen: `Dis_page${item}`
+    });
+  };
+
+  dataItemProvider(pageSize = 4) {
+    return [
+      {
+        image_url: require("../assets/image/discovery_1.jpeg"),
+        key: 0,
+        title:
+          "Looking for Authentic Chinese Food? A Guide to Chinese Restaurants in NYC",
+      },
+      {
+        image_url: require("../assets/image/discovery_2.jpeg"),
+        key: 1,
+        title: "College Experience at USC as an Asian American Student",
+      },
+      {
+        image_url: require("../assets/image/discovery_3.jpeg"),
+        key: 2,
+        title: "Yes. It is Racist to Say Asians are Good at Math. Here is Why.",
+      },
+      {
+        image_url: require("../assets/image/discovery_6.jpg"),
+        key: 6,
+        title: "Must-Follow K-Pop Artists in 2021",
+      },
+      {
+        image_url: require("../assets/image/discovery_4.jpg"),
+        key: 3,
+        title: "Japan Travel Guide: Architecture Style Explained",
+      },
+      {
+        image_url: require("../assets/image/discovery_5.jpeg"),
+        key: 4,
+        title: "My first Kung Fu Tea Experience",
+      },
+    ];
+  }
+  
+
+  ImageItem(dataItem, key) {
+    console.log(key)
+    let key_new = (key) + "AA";
+    console.log(key_new)
+
+    return (
+      <TouchableWithoutFeedback
+       onPress={() => this.onPress(dataItem.key+1)}
+       key={key_new}>
+        <View
+          style={{
+            ...styles.card,
+          }}
+        >
+
+          <Image key={toString(key)+"IM"} style={styles.img} source={dataItem.image_url} />
+          <Text key={toString(key)+"TE"} style={styles.text}>{dataItem.title}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  }
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Masonry
+          itemsProvider={this.dataItemProvider}
+          renderImageItem={this.ImageItem}
+          pageSize={4}
+        />
+      </SafeAreaView>
+    );
+  }
 }
+
+const vpWidth = Dimensions.get("window").width;
+
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
+    alignContent: "center",
     alignItems: "center",
-    justifyContent: "center"
-  }
+  },
+  card: {
+    margin: 8,
+    width: vpWidth * 0.5 - 15,
+    shadowColor: "#0000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    backgroundColor: "white",
+    borderRadius: 10,
+    maxHeight: parseInt(0.9 * vpWidth),
+  },
+  img: {
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    height: parseInt(0.6 * vpWidth),
+    width: vpWidth * 0.5 - 15,
+  },
+  text: {
+    textAlignVertical: "center",
+    textAlign: "center",
+    margin: 10,
+  },
 });

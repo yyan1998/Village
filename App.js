@@ -17,6 +17,7 @@ import Item3 from "./pages/Item3";
 import Item4 from "./pages/Item4";
 import Item5 from "./pages/Item5";
 import Wiki1 from "./pages/Wiki1";
+import Dis_page1 from "./pages/Dis_page1"
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,7 +27,7 @@ function DiscoverStack() {
     <Stack.Navigator
       initialRouteName="Discover"
       screenOptions={{
-        headerShown: false
+        headerShown: false,
       }}
     >
       <Stack.Screen
@@ -34,6 +35,10 @@ function DiscoverStack() {
         component={Discover}
         options={{ title: "Discover" }}
       />
+      <Stack.Screen
+      name="Dis_page1"
+      component={Dis_page1}
+      options={{title:"Dis1"}} />
     </Stack.Navigator>
   );
 }
@@ -43,7 +48,7 @@ function PetStack() {
     <Stack.Navigator
       initialRouteName="Pet"
       screenOptions={{
-        headerShown: false
+        headerShown: false,
       }}
     >
       <Stack.Screen name="Pet" component={Pet} options={{ title: "Pet" }} />
@@ -56,7 +61,7 @@ function PlaygroundStack() {
     <Stack.Navigator
       initialRouteName="Playground"
       screenOptions={{
-        headerShown: false
+        headerShown: false,
       }}
     >
       <Stack.Screen
@@ -94,6 +99,7 @@ function PlaygroundStack() {
         component={Wiki1}
         options={{ title: "Wiki1" }}
       />
+    
     </Stack.Navigator>
   );
 }
@@ -118,8 +124,8 @@ function App() {
           activeTintColor: "#42f44b",
           inactiveTintColor: "#000000",
           style: {
-            backgroundColor: "#F4F08D"
-          }
+            backgroundColor: "#F4F08D",
+          },
         }}
       >
         <Tab.Screen
@@ -133,7 +139,7 @@ function App() {
                 color={color}
                 size={size}
               />
-            )
+            ),
           }}
         />
         <Tab.Screen
@@ -143,7 +149,7 @@ function App() {
             tabBarLabel: "Pet",
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="paw" color={color} size={size} />
-            )
+            ),
           }}
         />
         <Tab.Screen
@@ -153,7 +159,7 @@ function App() {
             tabBarLabel: "Playground",
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="owl" color={color} size={size} />
-            )
+            ),
           }}
         />
       </Tab.Navigator>
