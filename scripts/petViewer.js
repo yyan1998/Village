@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-const petModel=require('./../assets/demo.glb');
+const petModel=require('./../assets/cat.glb');
 
 class PetViewer extends React.Component {
     constructor(props){
