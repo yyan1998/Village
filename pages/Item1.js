@@ -1,50 +1,58 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { StyleSheet, Text, View, SafeAreaView, Button, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Button,
+  Dimensions
+} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-import Card from '../component/Card'
+import Card from "../component/Card";
 
 export default class Item1 extends React.Component {
   state = {
-    cardSymbols: [
-      '😊', '😂' , '❤' , '✔', '✨' , '🐟' , '🧓' , '🧨',
-    ],
+    cardSymbols: ["🧧", "🏮", "🥟", "👨‍👩‍👧‍👦", "✨", "🐟", "🐲", "🧨"],
     cardSymbolsInRand: [],
     isOpen: [],
     firstPickedIndex: null,
     secondPickedIndex: null,
-    steps:0,
-    isEnded: false,
-  }
+    steps: 0,
+    isEnded: false
+  };
 
-  componentDidMount(){
-    this.initGame()
+  componentDidMount() {
+    this.initGame();
   }
 
   initGame = () => {
-    let newCardsSymbols = [...this.state.cardSymbols,...this.state.cardSymbols]
-    let cardSymbolsInRand = this.shuffleArray(newCardsSymbols)
+    let newCardsSymbols = [
+      ...this.state.cardSymbols,
+      ...this.state.cardSymbols
+    ];
+    let cardSymbolsInRand = this.shuffleArray(newCardsSymbols);
 
-    let isOpen = []
-    for (let i=0; i < newCardsSymbols.length; i++){
-      isOpen.push(false)
+    let isOpen = [];
+    for (let i = 0; i < newCardsSymbols.length; i++) {
+      isOpen.push(false);
     }
 
     this.setState({
       cardSymbolsInRand,
-      isOpen,
-    })  
-  }
+      isOpen
+    });
+  };
 
-  shuffleArray = (arr) => {
-    const newArr = arr.slice()
-    for (let i= newArr.length - 1; i>0; i--){
-      const rand= Math.floor(Math.random() * (i+1));
-      [newArr[i], newArr[rand]] = [newArr[rand],newArr[i]]
+  shuffleArray = arr => {
+    const newArr = arr.slice();
+    for (let i = newArr.length - 1; i > 0; i--) {
+      const rand = Math.floor(Math.random() * (i + 1));
+      [newArr[i], newArr[rand]] = [newArr[rand], newArr[i]];
     }
-    return newArr
-  }
+    return newArr;
+  };
   static navigationOptions = {
     title: "Item1"
   };
@@ -53,85 +61,91 @@ export default class Item1 extends React.Component {
     this.onPressBack = this.onPressBack.bind(this);
   }
 
-  cardPressHandler = (index)=> {
-    let isOpen = [...this.state.isOpen]
-    isOpen[index]=true
+  cardPressHandler = index => {
+    let isOpen = [...this.state.isOpen];
+    isOpen[index] = true;
 
-
-
-    if (this.state.firstPickedIndex == null && this.state.secondPickedIndex ==null){
+    if (
+      this.state.firstPickedIndex == null &&
+      this.state.secondPickedIndex == null
+    ) {
       this.setState({
         isOpen,
-        firstPickedIndex: index,
-      })
-    }
-    else if (this.state.firstPickedIndex != null && this.state.secondPickedIndex == null){
+        firstPickedIndex: index
+      });
+    } else if (
+      this.state.firstPickedIndex != null &&
+      this.state.secondPickedIndex == null
+    ) {
       this.setState({
         isOpen,
-        secondPickedIndex: index,
-      })
+        secondPickedIndex: index
+      });
     }
 
     this.setState({
-      steps: this.state.steps + 1,
-    })
-  }
-  calculateGameResult = () =>{
-    if (this.state.firstPickedIndex != null && this.state.secondPickedIndex != null){
-      
-      if (this.state.cardSymbolsInRand.length>0){
-        let totalOpens = this.state.isOpen.filter((isOpen)=> isOpen)
-        if (totalOpens.length === this.state.cardSymbolsInRand.length){
+      steps: this.state.steps + 1
+    });
+  };
+  calculateGameResult = () => {
+    if (
+      this.state.firstPickedIndex != null &&
+      this.state.secondPickedIndex != null
+    ) {
+      if (this.state.cardSymbolsInRand.length > 0) {
+        let totalOpens = this.state.isOpen.filter(isOpen => isOpen);
+        if (totalOpens.length === this.state.cardSymbolsInRand.length) {
           this.setState({
-            isEnded: true,
-          })
-          return 
+            isEnded: true
+          });
+          return;
         }
       }
-      
-      let firstSymbol = this.state.cardSymbolsInRand[this.state.firstPickedIndex]
-      let secondSymbol = this.state.cardSymbolsInRand[this.state.secondPickedIndex]
 
-      if (firstSymbol != secondSymbol){
-        setTimeout(()=>{
-          let isOpen = [...this.state.isOpen]
-          isOpen[this.state.firstPickedIndex] = false
-          isOpen[this.state.secondPickedIndex] = false
+      let firstSymbol = this.state.cardSymbolsInRand[
+        this.state.firstPickedIndex
+      ];
+      let secondSymbol = this.state.cardSymbolsInRand[
+        this.state.secondPickedIndex
+      ];
+
+      if (firstSymbol != secondSymbol) {
+        setTimeout(() => {
+          let isOpen = [...this.state.isOpen];
+          isOpen[this.state.firstPickedIndex] = false;
+          isOpen[this.state.secondPickedIndex] = false;
 
           this.setState({
             firstPickedIndex: null,
             secondPickedIndex: null,
-            isOpen,
-          })
-
-        }, 1000)
-      }
-      else{
+            isOpen
+          });
+        }, 1000);
+      } else {
         this.setState({
           firstPickedIndex: null,
-          secondPickedIndex: null,
-        })
+          secondPickedIndex: null
+        });
       }
     }
-  }
+  };
 
-  componentDidUpdate(prevProps,prevState) {
-    if (prevState.secondPickedIndex != this.state.secondPickedIndex){
-      this.calculateGameResult()
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.secondPickedIndex != this.state.secondPickedIndex) {
+      this.calculateGameResult();
     }
   }
 
   resetGame = () => {
-    this.initGame()
+    this.initGame();
 
     this.setState({
       firstPickedIndex: null,
       secondPickedIndex: null,
-      steps:0,
-      isEnded: false,
-    })
-  }
-
+      steps: 0,
+      isEnded: false
+    });
+  };
 
   onPressBack = () => {
     this.props.navigation.navigate("PlaygroundStack", { screen: "Playground" });
@@ -144,27 +158,37 @@ export default class Item1 extends React.Component {
           <Button title="Back" onPress={this.onPressBack} />
         </View>
         <View style={styles.header1}>
-          <Text style={styles.heading1}> Matching Game</Text>
+          <Text style={styles.heading1}>Match the Cultural Emojis</Text>
         </View>
         <View style={styles.mainBoard}>
           <View style={styles.gameBoard}>
-            {this.state.cardSymbolsInRand.map((symbol,index) =>
-              <Card key={index} onPress={() => this.cardPressHandler(index) } style= {styles.button} fontSize={30} title={symbol} cover="❓" isShow={this.state.isOpen[index]}></Card>
-            )}
+            {this.state.cardSymbolsInRand.map((symbol, index) => (
+              <Card
+                key={index}
+                onPress={() => this.cardPressHandler(index)}
+                style={styles.button}
+                fontSize={30}
+                title={symbol}
+                cover="❓"
+                isShow={this.state.isOpen[index]}
+              ></Card>
+            ))}
           </View>
         </View>
         <View style={styles.footer}>
-          <Text style={ styles.footerText}>{
-            this.state.isEnded 
-            ? `Congrats! You have completed in ${this.state.steps} steps.`
-            : `You have tried ${this.state.steps} time(s).`
-          }
+          <Text style={styles.footerText}>
+            {this.state.isEnded
+              ? `Congrats! You have completed in ${this.state.steps} steps.`
+              : `You have tried ${this.state.steps} time(s).`}
           </Text>
-          {this.state.isEnded ?
-            <TouchableOpacity onPress={ this.resetGame } style= {styles.tryAgainButton }>
-              <Text style={styles.tryAgainButtonText} >Try Again</Text>
+          {this.state.isEnded ? (
+            <TouchableOpacity
+              onPress={this.resetGame}
+              style={styles.tryAgainButton}
+            >
+              <Text style={styles.tryAgainButtonText}>Try Again</Text>
             </TouchableOpacity>
-            : null}
+          ) : null}
         </View>
         <StatusBar style="auto" />
       </SafeAreaView>
@@ -204,7 +228,7 @@ const styles = StyleSheet.create({
   },
   mainBoard: {
     flex: 3,
-    backgroundColor: "#fff"
+    backgroundColor: "#F4F08D"
   },
   footer: {
     flex: 1,
@@ -214,15 +238,15 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center"
   },
   gameBoard: {
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignContent: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center"
   },
   button: {
     backgroundColor: "#ccc",
@@ -231,16 +255,15 @@ const styles = StyleSheet.create({
     height: 48,
     justifyContent: "center",
     alignItems: "center",
-    margin: (Dimensions.get('window').width - (48*4)) / (5*2),
+    margin: (Dimensions.get("window").width - 48 * 4) / (5 * 2)
   },
   tryAgainButton: {
-    backgroundColor: '#eee',
+    backgroundColor: "#eee",
     padding: 8,
     borderRadius: 8,
-    marginTop: 20,
+    marginTop: 20
   },
-  tryAgainButtonText:{
-    fontSize: 18,
+  tryAgainButtonText: {
+    fontSize: 18
   }
 });
-
